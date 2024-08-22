@@ -67,7 +67,10 @@ this is a type or name of the element from which we want to get all the default 
 - we will use forward() function in the component
 
 
-
+### useImperativeHandle()  hook
+- this is a API 
+- it will be used if we want to expose some callable functions from one component to another component. 
+- also use with forwardRef()
 
 ### polymorphic wrapper component:
 - it will be used to share some common JSX code, logic, or styling.
@@ -137,4 +140,46 @@ It may be used like this:
     />
   </section>
 </main>
+```
+
+
+### as keywords use
+- renaming the component
+- giving new values
+- giving new types
+  `data as { name: string; age: string };`
+
+## Alternative: Avoiding Type Casting with "as"
+In the previous section, we used "Type Casting" (also called "Type Assertion") 
+via TypeScript's as keyword to "tell" TypeScript that a value is of a specific type.
+
+This is a technique that makes sense when working with data where TypeScript has no chance 
+of inferring the type where you on the other hand no the exact type.
+
+If you're not 100% sure about the type of value you'll be dealing with at runtime 
+(i.e., if there are multiple possible value types) or if you want to be extra safe, 
+you can also use a combination of "Type Guards" to narrow down the type until TypeScript is able 
+to infer the final type.
+
+Here's the code from the previous section, now adjusted to use "Type Guards" for "Type Narrowing":
+
+function handleSave(data: unknown) {
+// const extractedData = data as { name: string; age: string };
+``` 
+if (
+!data ||
+typeof data !== 'object' ||
+!('name' in data) ||
+!('age' in data)
+) {
+return;
+}
+```
+// at this point, TypeScript knows that data MUST BE an object
+// with a name and age property
+// otherwise, the previous if statement would have returned
+```
+console.log(data);
+customForm.current?.clear();
+}
 ```
