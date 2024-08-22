@@ -154,3 +154,13 @@ li button:hover {
     border: 1px solid #f97373;
     color: #f97373;
 }
+
+.button {
+    font: inherit;
+    background-color: #9074a8;
+    padding: 0.5rem 2.5rem;
+    border: none;
+    color: #ffffff;
+    cursor: pointer;
+
+}
